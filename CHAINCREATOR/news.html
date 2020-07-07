@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>news chain creator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.h{
+  background-color: #f1f1f1;
+  width: 15%;
+  height: auto;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+  height:250px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+A {text-decoration: none;} 
+  table, th, td {
+    border: 1px solid Lavender;
+   padding:2px;
+   height:"100%";
+    
+}
+
+/*from here*/
+
+/*css for sidenavbar*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/*css for buttons*/
+
+.button {
+  border-radius: 4px;
+  background-color: lavender;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+.dropbtnrt {
+    background-color:#3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtnrt:hover, .dropbtnrt:focus {
+    background-color: #3e8e41;
+}
+
+.dropdownrt {
+    /*float: right;*/
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-contentrt {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-contentrt a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownrt a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.dropbtn {
+    background-color: grey;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      min-height: 200px;
+    }
+    h1{
+      font-family: times new roman;
+      font-size: 80px;
+    }
+
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
+    }
+
+
+#tabl {
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+table, th, td {
+    border: 1px solid Lavender;
+    padding: 2px;
+   height:"100%";
+    
+}
+.fa {
+  padding: 20px;
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+
+
+*/A {text-decoration: none;} 
+  table, th, td {
+    border: 1px solid Lavender;
+   padding:2px;
+   height:"100%";
+    
+}
+
+/*from here*/
+
+/*css for sidenavbar*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/*css for buttons*/
+
+.button {
+  border-radius: 4px;
+  background-color: lavender;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+.dropbtnrt {
+    background-color:#3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtnrt:hover, .dropbtnrt:focus {
+    background-color: #3e8e41;
+}
+
+.dropdownrt {
+    /*float: right;*/
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-contentrt {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-contentrt a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdownrt a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.dropbtn {
+    background-color: grey;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.h{
+  background-color: #f1f1f1;
+  width: 15%;
+  height: auto;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header img.logo {
+  
+  
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+</style>
+</head>
+<body>
+<table>
+<div class="header">
+<div>
+<img  class="logo" src="chainlogo.jpg" width="150px" height="100px" >
+ <strong><font color="SaddleBrown" ><h1 style="font-family: Georgia;font-size: 30px;font-style: bold;float: right;">
+CHAIN CREATOR</h1></font></div></strong>
+  <div class="header-right">
+    
+    <a  href="franchiseinsights.html">Franchise Insights</a>
+    <a href="news.html">News</a>
+    <a href="prolav.html">Videos</a>
+    <a href="https://www.businessex.com/">BusinessEx</a>
+    <a href = "https://www.licenseindia.com/">Lisencse India</a>
+     <a href="register.html">Register</a>
+    <a href="login.html">Log in</a>
+   
+    <a href = "subscribe.html">Subscribe</a></div></div>
+</tr>
+
+<hr>
+<tr>
+   <a  class = "header-right" href=" "><button style="size: 20px;">Search</button></a>
+    <a >
+      
+          <select  class = "header-right" name="select industry" style="max-width: 20%; size: 30px">
+                    <option value=” ” disabled selected><a>Select industry</a></option>
+                    <option>Automotive</option>
+                    <option>Beauty and health</option>
+                    <option>Business Services</option>
+                    <option>Dealers and distributors</option> 
+                    <option>Education</option>
+                    <option>Fashion</option>
+                    <option>Food and Beverages</option>
+                    <option>Home based Businesses</option>
+                    <option>Hotel,Travel and tourism</option>
+                    <option>Industry,machinery</option>
+                    <option>Retail</option>
+                    <option>Sports,fitness</option>   
+                    <option>.......................................................</option>                    
+                   </select>
+    
+    </a>
+    <a>
+       <select  class = "header-right" name="select city" style="max-width: 20%;">
+                    <option value=”” disabled selected>Select city</option>   
+                    <option>New Delhi</option>
+                    <option>Mumbai</option>
+                    <option>Visakhapatnam</option>
+                    <option>Bangalore</option> 
+                    <option>Kolkata</option>    
+                    <option>.......................................................</option> 
+                   </select>
+
+    </a>
+    <a>
+
+      <select  class = "header-right" name="select min investment" style="max-width: 20%;">
+                    <option value=”” disabled selected> min investment</option>
+                    <option>Rs.10,000</option>
+                    <option>Rs.50,000</option>
+                    <option>Rs.1,00,000</option>
+                    <option>Rs.50,00,000</option> 
+                    <option>More than one CR</option> 
+                      <option>.......................................................</option>   
+                   </select>
+    </a>
+    <a>
+      <select  class = "header-right" name="select max investment"style="max-width: 20%;">
+                    <option value=”” disabled selected> max investment</option>   
+                    <option>Rs.1,00,000</option>
+                    <option>Rs.50,00,000</option>
+                    <option>Rs.1,00,000</option>
+                    <option>More than 1 CR</option> 
+                    <option>More than one 10 CR</option>  
+                      <option>.......................................................</option>   
+                   </select>
+    </a>
+    <!-- <a>
+      <select  class = "header-right" name="select sector" style="max-width: 20%;" >
+                    <option value=”” disabled selected> select sector</option>  
+                    <option>Public Sector</option>
+                    <option>private</option>
+                    <option>others</option> 
+                      <option>.......................................................</option>   
+                   </select>
+    </a><br> -->
+   
+   <br><hr>
+
+</tr>
+</table>
+
+<hr>
+
+<center>
+<h1 style="font-family: times new roman">NEWS</h1>
+</center>  <br>
+  
+  <div class="container">
+<div class="row">
+  <div class="col-sm-8">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="https://www.franchiseindia.com//uploads/news/wi/5bb4afe776e4d.jpeg" alt="Image">
+          <div class="carousel-caption">
+            <h3 style="color: black;">Indian Earth Brings Variety Of Healthy Seeds</h3>
+          </div>      
+        </div>
+
+        <div class="item">
+          <img src="https://www.franchiseindia.com/uploads/news/ri/5bb461602c7a9.jpeg" alt="Image">
+          <div class="carousel-caption">
+            <h3>Swiggy expands into B2B segment</h3>
+          </div>      
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+
+
+<div class="container">
+<div class="row">
+  
+  <div class="col-sm-4">
+    <div class="well">
+    <h4>MOST POPULAR</h4>
+    </div>
+    <div class="well">
+      <a href="https://news.franchiseindia.com/content/inifd-will-open-more-than-300-franchise-centers-in-next-2-yrs.n16757"><p>INIFD Eyes Expansion</p></a>
+    </div>
+    
+    <div class="well">
+     <a href="https://news.franchiseindia.com/content/frazer-and-haws-presents-decorative-serving-platters-trays-in-silver.n16756"><p>Frazer and Haws Brings New Collection</p></a>
+    </div>
+    <div class="well">
+      <a href="https://news.franchiseindia.com/wellness/ipca-labs-arm-acquires-majority-stake-in-bayshore-pharmaceuticals-for-1028-mn.n16755"
+    ><p>Ipca Labs Buys 80% stake in Bayshore</p></a>
+    </div>
+    <div class="well">
+       <a href="https://news.franchiseindia.com/wellness/dr-reddys-labs-sells-cloderm-cream-franchise-to-epi-health.n16754"><p>Dr Reddy's sell the rights of Cloderm Cream</p>
+    </div>
+    <div class="well">
+       <a href="https://news.franchiseindia.com/wellness/advanced-laparoscopic-surgery-training-centre-opens-in-aiims-bhubaneswar.n16753"><p>Odisha gets Laparoscopic Surgery Centre</p>
+    </div>
+  </div>
+</div>
+<hr>
+</div>
+
+<div class="container text-center">    
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="https://www.franchiseindia.com/uploads/news/edu/5bb481ca6fecc.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Delhi HC upholds MCI's regulation </p>
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://www.franchiseindia.com/uploads/news/edu/5bb472d9bfb3a.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>ITDA Launches "Hanging Libraries"</p>    
+    </div>
+    <div class="col-sm-3">
+      <img src="https://www.franchiseindia.com/uploads/news/edu/5bb46e23c091e.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>JGBA Partners with UNSW</p>
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://www.franchiseindia.com/uploads/news/ri/5bb468df8c06d.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>PepsiCo returns to Sales Growth</p>    
+    </div>
+    
+    <div class="col-sm-3">
+      <img src="https://www.franchiseindia.com/uploads/news/ri/5bb45bc4d6590.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Tata Starbucks hires new CEO</p>
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://www.franchiseindia.com/uploads/news/wi/5bb21311e1dbd.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>B&WSSC inks pact with CIDESCO</p>    
+    </div>
+    <div class="col-sm-3">
+      <img src="https://www.franchiseindia.com/uploads/news/edu/5bb20d4cf2157.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>AICTE to form Teacher Training Academics</p>
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://www.franchiseindia.com/uploads/news/fi/5bb1fe5db72ea.jpeg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Faber brings first 3D Chimney</p>    
+    </div>
+  </div>
+  <hr>
+</div>
+
+<br>
+<div>
+
+  <h1 style="background-color: white;color: white">hyeee
+<br><br></h1>
+</div>
+
+<table style="width: 100%" cellspacing="10px" cellpadding="10px" border="1px solid white">
+  <tr>
+    <th colspan="3">
+      <div >
+        <center>
+  
+<!-- Add font awesome icons -->
+<a href="https://facebook.com" class="fa fa-facebook"></a>
+<a href="https://twitter.com" class="fa fa-twitter"></a>
+<a href="https://gmail.com" class="fa fa-google"></a>
+<a href="https://linkedin.com" class="fa fa-linkedin"></a>
+<a href="https://youtube.com" class="fa fa-youtube"></a>
+</div>
+</center>
+    </th>
+    <td >
+      <center>
+     <button><a href="aboutus.html">Home</a></button>&nbsp&nbsp&nbsp
+     <button><a href="aboutus.html">About us</a></button>&nbsp&nbsp&nbsp
+      <button><a href="contactus.html">Contact</a></button>&nbsp&nbsp&nbsp
+     <button><a href="feedback.html">Feedback</a></button>&nbsp&nbsp&nbsp
+      <button><a href="news.html">News</a></button>&nbsp&nbsp&nbsp
+     <button><a href="testinomials.html">Testinomials</a></button>&nbsp&nbsp&nbsp
+      <button><a href="terms.html">Terms</a></button>&nbsp&nbsp&nbsp
+     <button><a href="https://www.franchiseindia.com/sitemap">Sitemap</a></button>&nbsp&nbsp&nbsp
+   </center>
+    </td>
+    
+  </tr>
+</table>
+
+
+</body>
+</html>
